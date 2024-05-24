@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,16 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+//referinta la clasa BlogController , cu functia index
+Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index'); //numele rutei
+
+
+//ruta de post pentru crearea unui nou blog
+Route::get('/blogs/create',[BlogController::class,'create'])->name('blogs.create');//ruta
+
+Route::post('/blogs/create', [BlogController::class, 'store'])->name('blogs.create');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

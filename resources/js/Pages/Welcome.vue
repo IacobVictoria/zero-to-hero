@@ -1,29 +1,29 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+// import { Head, Link } from '@inertiajs/vue3';
 
-defineProps({
-    canLogin: {
-        type: Boolean,
-    },
-    canRegister: {
-        type: Boolean,
-    },
-    laravelVersion: {
-        type: String,
-        required: true,
-    },
-    phpVersion: {
-        type: String,
-        required: true,
-    },
-});
+// defineProps({
+//     canLogin: {
+//         type: Boolean,
+//     },
+//     canRegister: {
+//         type: Boolean,
+//     },
+//     laravelVersion: {
+//         type: String,
+//         required: true,
+//     },
+//     phpVersion: {
+//         type: String,
+//         required: true,
+//     },
+// });
 
-function handleImageError() {
-    document.getElementById('screenshot-container')?.classList.add('!hidden');
-    document.getElementById('docs-card')?.classList.add('!row-span-1');
-    document.getElementById('docs-card-content')?.classList.add('!flex-row');
-    document.getElementById('background')?.classList.add('!hidden');
-}
+// function handleImageError() {
+//     document.getElementById('screenshot-container')?.classList.add('!hidden');
+//     document.getElementById('docs-card')?.classList.add('!row-span-1');
+//     document.getElementById('docs-card-content')?.classList.add('!flex-row');
+//     document.getElementById('background')?.classList.add('!hidden');
+// }
 </script>
 
 <template>
@@ -53,6 +53,13 @@ function handleImageError() {
                         </svg>
                     </div>
                     <nav v-if="canLogin" class="-mx-3 flex flex-1 justify-end">
+
+                        <Link :href="route('blogs.index')" >
+
+                            Lista Blogurilor 
+                            <!-- folosim link cand vrem sa navigam catre o alta ruta -->
+                        </Link>
+                        
                         <Link
                             v-if="$page.props.auth.user"
                             :href="route('dashboard')"
@@ -346,3 +353,19 @@ function handleImageError() {
         </div>
     </div>
 </template>
+
+<script>
+import { Head, Link } from '@inertiajs/vue3';
+
+export default {
+    name: "Welcome",
+
+    props:{
+        canLogin: Boolean,
+        canRegister: Boolean,
+        laravelVersion: String,
+        phpVersion: String
+    }
+}
+
+</script>
